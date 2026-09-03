@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Find an experienced ABC Tutoring tutor by subject and grade, then book a one-hour session online.">
+  <title>ABC Tutoring | Find the right tutor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="ABC Tutoring home">
+      <span class="brand-mark" aria-hidden="true">ABC</span>
+      <span>ABC Tutoring</span>
+    </a>
+    <nav aria-label="Main navigation">
+      <a href="#how-it-works">How it works</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">One-on-one support that fits</p>
+        <h1 id="hero-title">A tutor who meets your student where they are.</h1>
+        <p class="hero-intro">Tell us the subject and grade. We’ll show you experienced tutors with clear rates and times—no account required.</p>
+        <div class="trust-row" aria-label="Service highlights">
+          <span>✓ One-hour sessions</span>
+          <span>✓ Online or in person</span>
+          <span>✓ Clear rates upfront</span>
+        </div>
+      </div>
+
+      <div class="search-panel" aria-labelledby="search-title">
+        <div class="step-kicker"><span>Step 1 of 4</span> Student needs</div>
+        <h2 id="search-title">What does your student need help with?</h2>
+        <p>Choose a subject and grade to see the best matches.</p>
+        <form id="search-form" novalidate>
+          <div class="field">
+            <label for="subject">Subject</label>
+            <select id="subject" name="subject" required>
+              <option value="">Choose a subject</option>
+              <option>Mathematics</option>
+              <option>Science</option>
+              <option>English</option>
+              <option>History</option>
+              <option>Spanish</option>
+            </select>
+            <span class="field-error" id="subject-error"></span>
+          </div>
+          <div class="field">
+            <label for="grade">Student’s grade</label>
+            <select id="grade" name="grade" required>
+              <option value="">Choose a grade</option>
+              <option value="0">Kindergarten</option>
+              <option value="1">Grade 1</option>
+              <option value="2">Grade 2</option>
+              <option value="3">Grade 3</option>
+              <option value="4">Grade 4</option>
+              <option value="5">Grade 5</option>
+              <option value="6">Grade 6</option>
+              <option value="7">Grade 7</option>
+              <option value="8">Grade 8</option>
+              <option value="9">Grade 9</option>
+              <option value="10">Grade 10</option>
+              <option value="11">Grade 11</option>
+              <option value="12">Grade 12</option>
+            </select>
+            <span class="field-error" id="grade-error"></span>
+          </div>
+          <button class="button button-primary button-full" type="submit">Find matching tutors <span aria-hidden="true">→</span></button>
+        </form>
+        <p class="privacy-note"><span aria-hidden="true">●</span> We only ask for contact details when you’re ready to book.</p>
+      </div>
+    </section>
+
+    <section class="progress-wrap" aria-label="Booking progress">
+      <ol class="progress" id="progress-list">
+        <li class="is-active" data-progress="1"><span>1</span>Student needs</li>
+        <li data-progress="2"><span>2</span>Choose tutor</li>
+        <li data-progress="3"><span>3</span>Select time</li>
+        <li data-progress="4"><span>4</span>Review &amp; confirm</li>
+      </ol>
+    </section>
+
+    <section class="results-section" id="results" aria-labelledby="results-title" hidden>
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Step 2 of 4 · Choose tutor</p>
+          <h2 id="results-title">Your tutor matches</h2>
+          <p id="results-summary" aria-live="polite"></p>
+        </div>
+        <button class="text-button" id="change-search" type="button">Change subject or grade</button>
+      </div>
+      <div class="tutor-grid" id="tutor-grid"></div>
+      <div class="empty-state" id="no-results" hidden>
+        <span class="empty-icon" aria-hidden="true">?</span>
+        <h3>We don’t have that match yet</h3>
+        <p>Try another subject or grade, or contact Dana and we’ll help you find an option.</p>
+        <div class="empty-actions">
+          <button class="button button-primary" id="try-again" type="button">Try another search</button>
+          <a class="button button-secondary contact-email-link" href="#contact">Contact Dana</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="booking-stage" id="schedule" aria-labelledby="schedule-title" hidden>
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Step 3 of 4 · Select time</p>
+          <h2 id="schedule-title">Choose an available time</h2>
+          <p>Every session is one hour. Times shown are in your local time zone.</p>
+        </div>
+        <button class="text-button" id="change-tutor" type="button">Choose a different tutor</button>
+      </div>
+      <div class="schedule-layout">
+        <div id="selected-tutor-summary"></div>
+        <div class="time-panel">
+          <h3>Available appointments</h3>
+          <div class="slot-grid" id="slot-grid"></div>
+          <p class="availability-note"><span aria-hidden="true">↻</span> A booked time becomes unavailable immediately in this prototype.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="booking-stage" id="booking" aria-labelledby="booking-title" hidden>
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Step 4 of 4 · Review &amp; confirm</p>
+          <h2 id="booking-title">Tell us who the session is for</h2>
+          <p>You won’t need to create an account.</p>
+        </div>
+        <button class="text-button" id="change-time" type="button">Choose a different time</button>
+      </div>
+
+      <form id="booking-form" class="booking-layout" novalidate>
+        <div class="form-card">
+          <h3>Contact and student details</h3>
+          <div class="form-grid">
+            <div class="field">
+              <label for="parent-name">Parent’s name</label>
+              <input id="parent-name" name="parentName" autocomplete="name" required>
+              <span class="field-error"></span>
+            </div>
+            <div class="field">
+              <label for="parent-email">Parent’s email</label>
+              <input id="parent-email" name="parentEmail" type="email" autocomplete="email" inputmode="email" required>
+              <span class="field-error"></span>
+            </div>
+            <div class="field">
+              <label for="student-name">Student’s first name</label>
+              <input id="student-name" name="studentName" autocomplete="off" required>
+              <span class="field-error"></span>
+            </div>
+            <fieldset class="field session-format-field">
+              <legend>Session format</legend>
+              <div class="format-options" id="format-options"></div>
+              <span class="field-error" id="format-error"></span>
+            </fieldset>
+          </div>
+          <div class="reassurance-box">
+            <strong>Plans change—we understand.</strong>
+            <span>To change or cancel a booking, contact Dana using the email at the bottom of this page.</span>
+          </div>
+          <button class="button button-primary button-full-mobile" type="submit">Review booking <span aria-hidden="true">→</span></button>
+        </div>
+        <aside class="booking-summary" id="live-booking-summary" aria-label="Your booking so far"></aside>
+      </form>
+    </section>
+
+    <section class="booking-stage" id="review" aria-labelledby="review-title" hidden>
+      <div class="review-card">
+        <p class="eyebrow">One last check</p>
+        <h2 id="review-title">Review your booking</h2>
+        <p>Nothing is booked until you select “Confirm booking.”</p>
+        <dl class="review-list" id="review-list"></dl>
+        <div class="review-actions">
+          <button class="button button-secondary" id="edit-details" type="button">Edit details</button>
+          <button class="button button-primary" id="confirm-booking" type="button">Confirm booking</button>
+        </div>
+        <p class="submit-error" id="submit-error" role="alert"></p>
+      </div>
+    </section>
+
+    <section class="booking-stage" id="confirmation" aria-labelledby="confirmation-title" hidden>
+      <div class="confirmation-card">
+        <div class="success-mark" aria-hidden="true">✓</div>
+        <p class="eyebrow">Booking received</p>
+        <h2 id="confirmation-title">You’re all set.</h2>
+        <p>Dana will follow up by email with the remaining session details.</p>
+        <dl class="review-list" id="confirmation-list"></dl>
+        <p class="confirmation-help">Need to change or cancel? Email <a class="contact-email-link" href="#contact"></a>.</p>
+        <button class="button button-secondary" id="new-search" type="button">Find another tutor</button>
+      </div>
+    </section>
+
+    <section class="how-section" id="how-it-works" aria-labelledby="how-title">
+      <div class="section-heading compact">
+        <div>
+          <p class="eyebrow">Straightforward from the start</p>
+          <h2 id="how-title">How ABC Tutoring works</h2>
+        </div>
+      </div>
+      <div class="how-grid">
+        <article><span>01</span><h3>Share what they need</h3><p>Select the student’s subject and grade.</p></article>
+        <article><span>02</span><h3>Meet your matches</h3><p>Compare experience, qualifications, rates, and formats.</p></article>
+        <article><span>03</span><h3>Choose a time</h3><p>Pick an available one-hour appointment that works.</p></article>
+        <article><span>04</span><h3>Review and book</h3><p>Check every detail before confirming. Dana follows up by email.</p></article>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact" aria-labelledby="contact-title">
+      <div>
+        <p class="eyebrow">Questions before booking?</p>
+        <h2 id="contact-title">Dana is happy to help.</h2>
+        <p>Ask about tutor fit, in-person service areas, or changing an appointment.</p>
+      </div>
+      <a class="button button-light contact-email-link" href="#">Email Dana</a>
+    </section>
+  </main>
+
+  <footer>
+    <span>© <span id="year"></span> ABC Tutoring</span>
+    <span>Sample tutoring website prototype</span>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="posthog.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

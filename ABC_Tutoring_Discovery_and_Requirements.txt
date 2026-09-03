@@ -1,0 +1,542 @@
+ABC TUTORING WEBSITE PROTOTYPE
+CUSTOMER DISCOVERY, REQUIREMENTS, AND BUILD OVERVIEW
+
+Prepared for: Dana, ABC Tutoring
+Assessment role: PostHog representative / prototype developer
+Date: September 3, 2026
+
+======================================================================
+1. PROJECT OVERVIEW
+======================================================================
+
+ABC Tutoring currently uses a Facebook page and handles bookings manually
+through text messages and a Google Sheet. Parents contact Dana with a
+student's subject and grade. Dana checks the sheet, suggests a tutor, rate,
+and possible times, and exchanges messages until a time is agreed upon.
+
+The prototype will provide a mobile-friendly website where parents can:
+
+1. Enter a student's subject and grade.
+2. See matching tutors.
+3. Compare tutor information, rates, formats, and available times.
+4. Select a tutor and appointment.
+5. Enter the information needed for the session.
+6. Review the booking and expected cost.
+7. Confirm the booking without creating an account.
+8. See confirmation and follow-up instructions.
+
+The selected appointment will become unavailable in the prototype after it
+is booked. PostHog will measure subject demand, referral sources, and progress
+through the booking journey.
+
+Primary customer priorities:
+
+- Make booking simple on a phone.
+- Keep availability current and avoid double-bookings.
+- Reduce Dana's manual coordination by phone.
+- Learn which subjects and tutors should be added.
+
+======================================================================
+2. CUSTOMER DISCOVERY RECORD
+======================================================================
+
+Opening context
+---------------
+
+Dana runs a tutoring service and has never had a full website. ABC Tutoring
+currently has only a Facebook page. Dana wants parents to browse tutors and
+book sessions online because handling every request by phone has become too
+much work.
+
+Current booking process
+-----------------------
+
+- A parent texts Dana with the student's subject and grade.
+- Dana checks a Google Sheet.
+- Dana replies with a tutor, hourly rate, and possible appointment times.
+- Dana and the parent exchange messages until they agree on a time.
+- Dana adds the final appointment to the Google Sheet.
+
+Questions parents commonly ask
+------------------------------
+
+- Does the tutor have experience with the requested subject?
+- What is the tutor's hourly rate?
+- Does the tutor have times that work for the family?
+
+Finding a tutor
+---------------
+
+- Parents should begin by entering the student's subject and grade.
+- The website should then display matching tutors.
+- Sessions may be online or in person.
+- Sessions are normally one hour.
+
+Tutor profile information
+-------------------------
+
+Each tutor profile should show:
+
+- Photo
+- Short biography
+- Qualifications
+- Subject experience
+- Supported grade levels
+- Hourly rate
+- Available appointment times
+- Whether online sessions are offered
+- Whether in-person sessions are offered
+- General service area for in-person sessions
+
+The website must not display a tutor's full street address.
+
+Booking information
+-------------------
+
+The booking form should collect:
+
+- Parent's name
+- Parent's email address
+- Student's first name
+- Student's grade
+- Requested subject
+- Online or in-person session preference
+
+Booking review and confirmation
+-------------------------------
+
+Before submitting, the parent should review:
+
+- Selected tutor
+- Date and time
+- Session format
+- Expected cost for the one-hour session
+
+After submission, the confirmation should show:
+
+- Tutor
+- Date
+- Time
+- Hourly rate / expected cost
+- Session format
+- A message explaining that Dana will follow up with the remaining details
+
+The selected appointment should immediately appear unavailable after it is
+booked. Simple change and cancellation information should tell parents to
+contact Dana.
+
+Appearance and homepage content
+-------------------------------
+
+- The visual tone should be warm and encouraging.
+- The design should remain clean and professional.
+- Dana has no required brand colors.
+- The selected palette should have accessible contrast.
+- The homepage should include a short introduction.
+- The homepage should explain how the service works.
+- The homepage should include contact information.
+
+Usability priorities
+--------------------
+
+- Most parents are expected to use phones.
+- The site must be responsive and designed mobile-first.
+- Parents should not need to create an account.
+- The booking flow should use clear, visible steps:
+  1. Student needs
+  2. Choose tutor
+  3. Select time
+  4. Review and confirm
+- Parents should be able to check their selections before committing.
+- Errors should be explained in plain language and be easy to correct.
+
+Analytics needs
+---------------
+
+Dana wants to understand:
+
+- Which subjects parents search for
+- Which grade levels are associated with searches
+- Which searches return no matching tutors
+- Whether visitors book or leave
+- Where visitors leave during the booking process
+- Which tutors visitors view
+- Which appointment times visitors select
+- How many visitors start the booking form
+- How many visitors complete a booking
+- The booking conversion rate
+- Where visitors came from, especially Dana's Facebook group
+
+Dana will use this information to decide which subjects, grade coverage, or
+tutors ABC Tutoring should add.
+
+Dana's final confirmation
+-------------------------
+
+Dana confirmed that the requirements are accurate. She asked that development
+prioritize a simple phone booking experience and current availability so that
+she does not receive double-bookings.
+
+======================================================================
+3. PROPOSED USER JOURNEY
+======================================================================
+
+Homepage
+  -> Parent reads the ABC Tutoring introduction and how-it-works section
+  -> Parent selects a subject and grade
+  -> Website records the search
+  -> Website displays matching tutors or a helpful no-results message
+  -> Parent opens or selects a tutor
+  -> Parent reviews biography, qualifications, rate, formats, and area
+  -> Parent chooses an available one-hour appointment
+  -> Parent selects online or in-person when supported by that tutor
+  -> Parent completes the booking form
+  -> Parent reviews tutor, time, format, and expected cost
+  -> Parent confirms the booking
+  -> Website marks the time unavailable in the prototype
+  -> Website displays a confirmation and Dana's follow-up message
+
+No-match experience:
+
+- Explain clearly that no tutor currently matches the selected subject/grade.
+- Allow the parent to change the subject or grade easily.
+- Provide Dana's contact information as an alternative.
+- Record the unmatched subject and grade in PostHog.
+
+======================================================================
+4. GENDERMAG-INFORMED DESIGN REQUIREMENTS
+======================================================================
+
+The experience will account for different problem finder and technology-use
+styles without stereotyping individual users.
+
+Motivation
+----------
+
+- Keep the main goal visible: find and book the right tutor.
+- Avoid unnecessary features that distract from completing the task.
+- Use direct calls to action such as "Find tutors" and "Book this time."
+
+Information processing
+----------------------
+
+- Show enough tutor detail for parents who want to compare carefully.
+- Use short summaries and clear structure for parents who want to move quickly.
+- Keep rate, formats, experience, and availability easy to locate.
+
+Computer self-efficacy
+----------------------
+
+- Use familiar controls and plain language.
+- Clearly mark required fields.
+- Provide examples or hints where helpful.
+- Explain validation errors next to the relevant field.
+- Never blame the parent for an input error.
+
+Attitude toward risk
+--------------------
+
+- Show the rate and expected cost before confirmation.
+- Show exactly what is being booked.
+- Allow parents to go back and correct selections before submitting.
+- Explain how changes and cancellations work.
+- Confirm successful submission clearly.
+- Collect only the information necessary for the booking.
+
+Learning style
+--------------
+
+- Provide a visible step-by-step path.
+- Show progress through the booking journey.
+- Make the next action obvious at each step.
+- Keep navigation and actions consistent.
+
+At every major step, verify:
+
+1. Will the parent know what to do?
+2. If the parent performs the action, will they know they are making progress
+   toward booking a tutor?
+3. Can the parent recover easily from a mistake or change of mind?
+
+======================================================================
+5. FUNCTIONAL REQUIREMENTS
+======================================================================
+
+FR-01: The website shall allow a parent to select a subject and grade.
+
+FR-02: The website shall display tutors matching the selected subject and
+       grade.
+
+FR-03: The website shall provide a useful response when no tutor matches.
+
+FR-04: Each tutor shall display the profile information listed in Section 2.
+
+FR-05: The website shall show only appointment times that are available in
+       the prototype's current browser state.
+
+FR-06: The website shall support online and in-person session formats.
+
+FR-07: The website shall prevent selection of a format a tutor does not offer.
+
+FR-08: The website shall treat a standard appointment as one hour.
+
+FR-09: A parent shall be able to book without creating an account.
+
+FR-10: The booking form shall collect the required information in Section 2.
+
+FR-11: The website shall validate required information before submission.
+
+FR-12: The website shall present a booking review before final submission.
+
+FR-13: The review shall show tutor, date/time, format, and expected cost.
+
+FR-14: After confirmation, the booked time shall become unavailable in the
+       current browser.
+
+FR-15: The website shall display a clear booking confirmation.
+
+FR-16: The confirmation shall state that Dana will follow up with details.
+
+FR-17: The website shall explain that changes and cancellations are handled
+       by contacting Dana.
+
+FR-18: The website shall provide an option to begin another tutor search.
+
+FR-19: The website shall retain prototype bookings after a page refresh by
+       using browser storage.
+
+FR-20: PostHog shall be initialized on the published website.
+
+======================================================================
+6. NON-FUNCTIONAL REQUIREMENTS
+======================================================================
+
+- Mobile-first and responsive across common phone and desktop widths
+- Warm, encouraging, clean, and professional presentation
+- Accessible color contrast and visible keyboard focus
+- Semantic labels for form fields and meaningful button text
+- Large touch targets suitable for phones
+- No full street addresses for tutors
+- No account requirement
+- Clear validation, status, and confirmation messages
+- Static-hosting compatibility with GitHub Pages
+- Client-side state acceptable for the assessment prototype
+- No PostHog personal API key or other private credential in source control
+
+======================================================================
+7. POSTHOG MEASUREMENT PLAN
+======================================================================
+
+Recommended custom events and useful properties:
+
+Event: tutor_search_submitted
+Properties:
+- subject
+- grade
+- matching_tutor_count
+- has_matches
+- referrer or campaign information when available
+
+Event: tutor_search_no_results
+Properties:
+- subject
+- grade
+
+Event: tutor_profile_viewed
+Properties:
+- tutor_id
+- tutor_name
+- subject
+- grade
+
+Event: appointment_time_selected
+Properties:
+- tutor_id
+- subject
+- grade
+- session_date
+- session_time
+- supported_session_formats
+
+Event: booking_form_started
+Properties:
+- tutor_id
+- subject
+- grade
+- session_format
+
+Event: booking_review_viewed
+Properties:
+- tutor_id
+- subject
+- grade
+- session_format
+- hourly_rate
+
+Event: booking_completed
+Properties:
+- tutor_id
+- subject
+- grade
+- session_format
+- hourly_rate
+- session_date
+- session_time
+
+Privacy rule:
+
+Do not send parent names, student names, email addresses, or other directly
+identifying form values as PostHog event properties.
+
+Recommended dashboard insights:
+
+1. Searches by subject
+2. Searches by grade
+3. No-result searches by subject and grade
+4. Most-viewed tutors
+5. Booking funnel:
+   - Tutor search submitted
+   - Tutor profile viewed / tutor selected
+   - Appointment time selected
+   - Booking form started
+   - Booking review viewed
+   - Booking completed
+6. Overall booking conversion rate
+7. Funnel abandonment by step
+8. Traffic/referral sources, including Facebook
+9. Completed bookings by subject
+10. Completed bookings by tutor and session format
+
+======================================================================
+8. PROTOTYPE DATA AND CONTENT NEEDED
+======================================================================
+
+Unless Dana provides real content, the prototype will need clearly labeled
+sample data for:
+
+- Tutor names and photos
+- Biographies and qualifications
+- Subjects and grade levels
+- Hourly rates
+- Online/in-person offerings
+- General in-person service areas
+- Appointment availability
+- ABC Tutoring contact email
+
+The sample tutor set should cover multiple subjects, grades, prices, formats,
+and availability patterns. At least one subject/grade combination should
+produce no results so the no-match experience and analytics can be tested.
+
+======================================================================
+9. TECHNICAL APPROACH
+======================================================================
+
+- Static HTML, CSS, and JavaScript suitable for GitHub Pages
+- Responsive, mobile-first interface
+- Client-side filtering for subject and grade matching
+- Client-side multi-step booking interface
+- localStorage for bookings and unavailable appointment slots
+- PostHog browser JavaScript SDK or official snippet
+- Public PostHog project key and correct regional host
+- No private PostHog personal API key in the website
+- A small traffic simulation or documented test flow if time permits
+
+======================================================================
+10. IMPORTANT AVAILABILITY LIMITATION
+======================================================================
+
+GitHub Pages serves static files, and localStorage belongs only to one browser
+on one device. Therefore, localStorage can demonstrate that a booked time
+becomes unavailable in the same browser, including after refresh, but it cannot
+keep availability synchronized between different parents' devices.
+
+This means the assessment prototype cannot guarantee prevention of real-world
+double-bookings across multiple visitors using localStorage alone. A production
+version would need shared server-side storage or integration with a booking or
+calendar service that performs an atomic availability check when the booking is
+submitted.
+
+The prototype and presentation should describe this honestly:
+
+- Prototype: disables the booked slot in the current browser.
+- Production recommendation: use a shared booking backend or calendar system
+  to keep availability current across all visitors and prevent race conditions.
+
+======================================================================
+11. ACCEPTANCE CHECKLIST
+======================================================================
+
+[ ] Website renders correctly at the GitHub Pages URL.
+[ ] Layout works at common mobile widths.
+[ ] Parent can search by subject and grade.
+[ ] Matching tutors appear correctly.
+[ ] No-match state is clear and recoverable.
+[ ] Tutor cards/profiles show all required decision information.
+[ ] Only supported session formats can be chosen.
+[ ] Parent can select an available one-hour appointment.
+[ ] Booking form collects all required fields.
+[ ] Required-field errors are clear and accessible.
+[ ] Review screen shows tutor, date/time, format, and expected cost.
+[ ] Successful booking displays all required confirmation details.
+[ ] Booked slot becomes unavailable in the same browser.
+[ ] Booked slot remains unavailable after refresh.
+[ ] Change/cancellation instructions direct the parent to Dana.
+[ ] No account is required.
+[ ] PostHog loads successfully on the published site.
+[ ] Every planned custom event fires with appropriate properties.
+[ ] No names or email addresses are sent to PostHog.
+[ ] Referral/source reporting can distinguish Facebook traffic when available.
+[ ] PostHog dashboard contains Dana's requested insights.
+[ ] Dashboard public sharing is enabled for submission.
+[ ] Three-to-five-slide customer presentation is exported as PDF.
+[ ] Presentation is written for Dana rather than an engineer.
+[ ] Repository, PDF, and shared dashboard link are ready for submission.
+
+======================================================================
+12. PRESENTATION OUTLINE (3-5 SLIDES)
+======================================================================
+
+Slide 1: What we learned
+- Parents need a faster way to find and book an appropriate tutor.
+- Dana needs fewer manual messages and better visibility into demand.
+
+Slide 2: The parent experience
+- Subject and grade matching
+- Clear tutor comparison
+- Mobile-first guided booking
+- Review and confirmation
+
+Slide 3: How the prototype supports confidence
+- Transparent rate and expected cost
+- Tutor qualifications and availability
+- No required account
+- Clear steps, errors, confirmation, and cancellation instructions
+
+Slide 4: What Dana can learn
+- Popular and underserved subjects
+- No-result searches
+- Referral sources such as Facebook
+- Booking conversion and abandonment
+
+Slide 5: Demonstrated result and next step
+- Working GitHub Pages prototype
+- PostHog dashboard
+- Prototype availability behavior
+- Production recommendation for shared real-time booking storage
+
+======================================================================
+13. NEXT STEPS
+======================================================================
+
+1. Locate or clone the <organization-name>.github.io repository.
+2. Obtain the PostHog public project key and regional host.
+3. Add real or clearly labeled sample tutor and contact information.
+4. Build the responsive website and booking flow.
+5. Add PostHog events without sending personal booking information.
+6. Test all acceptance criteria locally and on GitHub Pages.
+7. Generate representative activity for the dashboard.
+8. Build and share the PostHog dashboard.
+9. Create and visually verify the 3-5 slide PDF presentation.
+10. Submit the repository URL, PDF, and shared dashboard link.
+
+END OF PROJECT BRIEF
